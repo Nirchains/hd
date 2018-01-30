@@ -35,8 +35,8 @@ def get_data(conditions, filters):
 	return time_sheet
 
 def get_conditions(filters):
-	#conditions = "`tabTimesheet`.docstatus = 1"
-	conditions = "1 = 1 "
+	conditions = "`tabTimesheet`.docstatus <> 2"
+	#conditions = "1 = 1 "
 	if filters.get("from_date"):
 		conditions += " and `tabTimesheet Detail`.from_time >= timestamp(%(from_date)s, %(from_time)s)"
 	if filters.get("to_date"):
