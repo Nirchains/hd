@@ -21,6 +21,14 @@ app_include_css = [
 app_include_js = [
 	"/assets/js/custom.js"
 ]
+
+fixtures=['Custom Field', 'Property Setter','Print Format','Custom Script','Report']
+
+doctype_js = {
+    "Timesheet":[
+        "custom_script/timesheet.js"
+    ]
+}
 # include js, css files in header of desk.html
 # app_include_css = "/assets/hd/css/hd.css"
 # app_include_js = "/assets/hd/js/hd.js"
