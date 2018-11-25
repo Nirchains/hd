@@ -2014,13 +2014,13 @@
   "doc_type": "Purchase Invoice", 
   "docstatus": 0, 
   "doctype": "Property Setter", 
-  "doctype_or_field": "DocType", 
-  "field_name": null, 
-  "modified": "2018-11-25 11:49:52.371453", 
-  "name": "Purchase Invoice-read_only_onload", 
-  "property": "read_only_onload", 
+  "doctype_or_field": "DocField", 
+  "field_name": "supplier_invoice_details", 
+  "modified": "2018-11-25 11:49:52.401807", 
+  "name": "Purchase Invoice-supplier_invoice_details-collapsible", 
+  "property": "collapsible", 
   "property_type": "Check", 
-  "value": null
+  "value": "0"
  }, 
  {
   "_assign": null, 
@@ -2031,12 +2031,12 @@
   "doc_type": "Purchase Invoice", 
   "docstatus": 0, 
   "doctype": "Property Setter", 
-  "doctype_or_field": "DocField", 
-  "field_name": "supplier_invoice_details", 
-  "modified": "2018-11-25 11:49:52.401807", 
-  "name": "Purchase Invoice-supplier_invoice_details-collapsible", 
-  "property": "collapsible", 
+  "doctype_or_field": "DocType", 
+  "field_name": null, 
+  "modified": "2018-11-25 13:31:39.371531", 
+  "name": "Purchase Invoice-read_only_onload", 
+  "property": "read_only_onload", 
   "property_type": "Check", 
-  "value": "0"
+  "value": null
  }
 ]
