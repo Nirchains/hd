@@ -19,7 +19,8 @@ app_include_css = [
 	"/assets/hd/css/custom.css"
 ]
 app_include_js = [
-	"/assets/js/custom.js"
+	"/assets/js/custom.js",
+	"/assets/js/core.js"
 ]
 
 fixtures=['Custom Field', 'Property Setter','Print Format','Custom Script','Report']

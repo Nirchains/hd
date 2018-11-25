@@ -9,5 +9,8 @@
         "public/js/fix.js",
         "public/js/extra.js",
         "public/js/custom.js"
+    ],
+    "js/core.js": [
+        "public/js/core/keyboard.js"
     ]
 }
