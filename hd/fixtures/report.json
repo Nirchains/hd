@@ -7,6 +7,226 @@
   "doctype": "Report", 
   "is_standard": "Yes", 
   "javascript": null, 
+  "json": null, 
+  "letter_head": null, 
+  "modified": "2018-01-29 12:59:55.650445", 
+  "module": "Regional", 
+  "name": "GSTR-2", 
+  "query": null, 
+  "ref_doctype": "GL Entry", 
+  "report_name": "GSTR-2", 
+  "report_type": "Script Report", 
+  "roles": [
+   {
+    "role": "Accounts User"
+   }, 
+   {
+    "role": "Accounts Manager"
+   }, 
+   {
+    "role": "Auditor"
+   }
+  ]
+ }, 
+ {
+  "add_total_row": 0, 
+  "apply_user_permissions": 1, 
+  "disabled": 0, 
+  "docstatus": 0, 
+  "doctype": "Report", 
+  "is_standard": "Yes", 
+  "javascript": null, 
+  "json": null, 
+  "letter_head": null, 
+  "modified": "2018-02-19 12:03:53.902167", 
+  "module": "Stock", 
+  "name": "Item Balance (Simple)", 
+  "query": "select a.item_code as \"Item:Link/Item:120\",\n\t  a.item_name as \"Item Name::150\",\n\t  a.item_group as \"Item Group:Link/Item Group:120\",\n\t  a.brand as \"Brand:Link/Brand:120\",\n\t  a.description as \"Description::150\",\n\t  b.warehouse as \"Warehouse:Link/Warehouse:120\",\n\t  b.actual_qty as \"Balance Qty:Float:140\"\n from `tabItem` a left join `tabBin` b\n ON a.item_code = b.item_code", 
+  "ref_doctype": "Bin", 
+  "report_name": "Item Balance (Simple)", 
+  "report_type": "Query Report", 
+  "roles": [
+   {
+    "role": "Sales User"
+   }, 
+   {
+    "role": "Purchase User"
+   }, 
+   {
+    "role": "Stock User"
+   }
+  ]
+ }, 
+ {
+  "add_total_row": 0, 
+  "apply_user_permissions": 1, 
+  "disabled": 0, 
+  "docstatus": 0, 
+  "doctype": "Report", 
+  "is_standard": "Yes", 
+  "javascript": null, 
+  "json": null, 
+  "letter_head": null, 
+  "modified": "2018-07-19 12:08:07.400295", 
+  "module": "Regional", 
+  "name": "Eway Bill", 
+  "query": null, 
+  "ref_doctype": "Delivery Note", 
+  "report_name": "Eway Bill", 
+  "report_type": "Script Report", 
+  "roles": [
+   {
+    "role": "Stock User"
+   }, 
+   {
+    "role": "Stock Manager"
+   }, 
+   {
+    "role": "Sales User"
+   }, 
+   {
+    "role": "Accounts User"
+   }
+  ]
+ }, 
+ {
+  "add_total_row": 0, 
+  "apply_user_permissions": 1, 
+  "disabled": 0, 
+  "docstatus": 0, 
+  "doctype": "Report", 
+  "is_standard": "Yes", 
+  "javascript": null, 
+  "json": null, 
+  "letter_head": null, 
+  "modified": "2017-02-24 20:00:38.101588", 
+  "module": "Manufacturing", 
+  "name": "Issued Items Against Work Order", 
+  "query": "select\n    ste.production_order as \"Production Order:Link/Production Order:120\",\n    ste.posting_date as \"Issue Date:Date:140\",\n    ste_item.item_code as \"Item Code:Link/Item:120\",\n\tste_item.description as \"Description::150\",\n\tste_item.transfer_qty as \"Qty:Float:100\",\n\tste_item.stock_uom as \"UOM:Link/UOM:80\",\n\tste_item.amount as \"Amount:Currency:120\",\n\tste_item.serial_no as \"Serial No:Link/Serial No:80\",\n\tste_item.s_warehouse as \"Source Warehouse:Link/Warehouse:120\",\n\tste_item.t_warehouse as \"Target Warehouse:Link/Warehouse:120\",\n\tpro.production_item as \"Finished Goods:Link/Item:120\", \n\tste.name as \"Stock Entry:Link/Stock Entry:120\",\n\tste.company as \"Company:Link/Company:\",\n\t(select bin.projected_qty from `tabBin` bin \n\t\t\twhere  bin.item_code= ste_item.item_code and bin.warehouse= ste_item.s_warehouse) as \"Projected Quantity as Source:Float:200\"\nfrom\t`tabStock Entry` ste, `tabStock Entry Detail` ste_item, `tabProduction Order` pro\nwhere\n\tifnull(ste.production_order, '') != '' and ste.name = ste_item.parent \n\tand ste.production_order = pro.name and ste.docstatus = 1\n\tand ste.purpose = 'Material Transfer for Manufacture'\norder by ste.posting_date, ste.production_order, ste_item.item_code", 
+  "ref_doctype": "Work Order", 
+  "report_name": "Issued Items Against Work Order", 
+  "report_type": "Query Report", 
+  "roles": [
+   {
+    "role": "Manufacturing User"
+   }, 
+   {
+    "role": "Stock User"
+   }
+  ]
+ }, 
+ {
+  "add_total_row": 0, 
+  "apply_user_permissions": 1, 
+  "disabled": 0, 
+  "docstatus": 0, 
+  "doctype": "Report", 
+  "is_standard": "Yes", 
+  "javascript": null, 
+  "json": null, 
+  "letter_head": null, 
+  "modified": "2017-02-24 20:10:23.179130", 
+  "module": "Manufacturing", 
+  "name": "Open Work Orders", 
+  "query": "SELECT\n  `tabProduction Order`.name as \"Production Order:Link/Production Order:200\",\n  `tabProduction Order`.creation as \"Date:Date:120\",\n  `tabProduction Order`.production_item as \"Item:Link/Item:150\",\n  `tabProduction Order`.qty as \"To Produce:Int:100\",\n  `tabProduction Order`.produced_qty as \"Produced:Int:100\",\n  `tabProduction Order`.company as \"Company:Link/Company:\"\nFROM\n  `tabProduction Order`\nWHERE\n  `tabProduction Order`.docstatus=1\n  AND ifnull(`tabProduction Order`.produced_qty,0) < `tabProduction Order`.qty\n  AND NOT EXISTS (SELECT name from `tabStock Entry` where production_order =`tabProduction Order`.name) ", 
+  "ref_doctype": "Work Order", 
+  "report_name": "Open Work Orders", 
+  "report_type": "Query Report", 
+  "roles": [
+   {
+    "role": "Manufacturing User"
+   }, 
+   {
+    "role": "Stock User"
+   }
+  ]
+ }, 
+ {
+  "add_total_row": 0, 
+  "apply_user_permissions": 1, 
+  "disabled": 0, 
+  "docstatus": 0, 
+  "doctype": "Report", 
+  "is_standard": "Yes", 
+  "javascript": null, 
+  "json": null, 
+  "letter_head": null, 
+  "modified": "2017-02-24 20:10:40.304828", 
+  "module": "Manufacturing", 
+  "name": "Work Orders in Progress", 
+  "query": "SELECT\n  `tabProduction Order`.name as \"Production Order:Link/Production Order:200\",\n  `tabProduction Order`.creation as \"Date:Date:120\",\n  `tabProduction Order`.production_item as \"Item:Link/Item:150\",\n  `tabProduction Order`.qty as \"To Produce:Int:100\",\n  `tabProduction Order`.produced_qty as \"Produced:Int:100\",\n  `tabProduction Order`.company as \"Company:Link/Company:\"\nFROM\n  `tabProduction Order`\nWHERE\n  `tabProduction Order`.docstatus=1\n  AND ifnull(`tabProduction Order`.produced_qty,0) < `tabProduction Order`.qty\n  AND EXISTS (SELECT name from `tabStock Entry` where production_order =`tabProduction Order`.name) ", 
+  "ref_doctype": "Work Order", 
+  "report_name": "Work Orders in Progress", 
+  "report_type": "Query Report", 
+  "roles": [
+   {
+    "role": "Manufacturing User"
+   }, 
+   {
+    "role": "Stock User"
+   }
+  ]
+ }, 
+ {
+  "add_total_row": 0, 
+  "apply_user_permissions": 1, 
+  "disabled": 0, 
+  "docstatus": 0, 
+  "doctype": "Report", 
+  "is_standard": "Yes", 
+  "javascript": null, 
+  "json": null, 
+  "letter_head": null, 
+  "modified": "2017-02-24 20:10:32.460097", 
+  "module": "Manufacturing", 
+  "name": "Completed Work Orders", 
+  "query": "SELECT\n  `tabProduction Order`.name as \"Production Order:Link/Production Order:200\",\n  `tabProduction Order`.creation as \"Date:Date:120\",\n  `tabProduction Order`.production_item as \"Item:Link/Item:150\",\n  `tabProduction Order`.qty as \"To Produce:Int:100\",\n  `tabProduction Order`.produced_qty as \"Produced:Int:100\",\n  `tabProduction Order`.company as \"Company:Link/Company:\"\nFROM\n  `tabProduction Order`\nWHERE\n  `tabProduction Order`.docstatus=1\n  AND ifnull(`tabProduction Order`.produced_qty,0) = `tabProduction Order`.qty", 
+  "ref_doctype": "Work Order", 
+  "report_name": "Completed Work Orders", 
+  "report_type": "Query Report", 
+  "roles": [
+   {
+    "role": "Manufacturing User"
+   }, 
+   {
+    "role": "Stock User"
+   }
+  ]
+ }, 
+ {
+  "add_total_row": 0, 
+  "apply_user_permissions": 1, 
+  "disabled": 0, 
+  "docstatus": 0, 
+  "doctype": "Report", 
+  "is_standard": "Yes", 
+  "javascript": null, 
+  "json": null, 
+  "letter_head": "", 
+  "modified": "2017-02-24 19:59:07.792058", 
+  "module": "Manufacturing", 
+  "name": "Work Order Stock Report", 
+  "query": null, 
+  "ref_doctype": "Work Order", 
+  "report_name": "Work Order Stock Report", 
+  "report_type": "Script Report", 
+  "roles": [
+   {
+    "role": "Manufacturing User"
+   }, 
+   {
+    "role": "Stock User"
+   }
+  ]
+ }, 
+ {
+  "add_total_row": 0, 
+  "apply_user_permissions": 1, 
+  "disabled": 0, 
+  "docstatus": 0, 
+  "doctype": "Report", 
+  "is_standard": "Yes", 
+  "javascript": null, 
   "json": "{\"add_total_row\": 0, \"sort_by\": \"Serial No.modified\", \"sort_order\": \"desc\", \"sort_by_next\": null, \"filters\": [[\"Serial No\", \"delivery_document_type\", \"in\", [\"Delivery Note\", \"Sales Invoice\"]], [\"Serial No\", \"warehouse\", \"=\", \"\"]], \"sort_order_next\": \"desc\", \"columns\": [[\"name\", \"Serial No\"], [\"item_code\", \"Serial No\"], [\"amc_expiry_date\", \"Serial No\"], [\"maintenance_status\", \"Serial No\"], [\"delivery_document_no\", \"Serial No\"], [\"customer\", \"Serial No\"], [\"customer_name\", \"Serial No\"], [\"item_name\", \"Serial No\"], [\"description\", \"Serial No\"], [\"item_group\", \"Serial No\"], [\"brand\", \"Serial No\"]]}", 
   "letter_head": null, 
   "modified": "2017-02-24 20:02:00.706889", 
