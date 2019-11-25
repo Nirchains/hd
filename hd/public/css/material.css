@@ -883,9 +883,6 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 }
 
 
-/
-
-
 html {
 
   background: #eeeeee;
@@ -1353,7 +1350,6 @@ body[data-route="desktop"] .navbar-default {
   .linked-with-dialog {
     width: 100% !important;
   }
-}
   #page-setup-wizard .form-section:first-child .form-column:first-child .frappe-control:first-child {
     border-top: 1px solid #d1d8dd;
   }
@@ -1364,7 +1360,6 @@ body[data-route="desktop"] .navbar-default {
     border: none;
   }
 
-}
 
 /*
  *  /home/frappe/frappe-bench/apps/frappe/frappe/public/css/calendar.css
