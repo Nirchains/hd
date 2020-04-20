@@ -85,3 +85,11 @@ h6.uppercase,
   -moz-column-gap: 40px;
   column-gap: 40px;
 }
+
+.chart-wrapper {
+  background-color: #FFFFFF;
+}
+
+.section-box {
+    background-color: #fff;
+}

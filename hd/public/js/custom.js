@@ -1,4 +1,6 @@
-util = {
+frappe.provide("util");
+
+$.extend(util, {
 	get: function(frm, doctype, name, filters, callback) {
 		return frappe.call({
 			method: "frappe.client.get",
@@ -46,9 +48,11 @@ util = {
 		frm.toggle_display(name, condition);
 		frm.toggle_reqd(name, false);
 	}
-};
+});
 
-helper = {
+frappe.provide("helper");
+
+$.extend(helper, {
 	IsNull: function (obj) {
         return (obj === null || obj === undefined || obj === 'undefined');
     },
@@ -97,4 +101,4 @@ helper = {
     	return (arr.indexOf(obj) != -1);
     }
 
-}
+});
