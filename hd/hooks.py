@@ -11,6 +11,8 @@ app_color = "orange"
 app_email = "pedro@hispalisdigital.com"
 app_license = "MIT"
 
+error_report_email = "pedro@hispalisdigital.com"
+
 # Includes in <head>
 # ------------------
 # include js, css files in header of desk.html
